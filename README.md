@@ -23,4 +23,5 @@ See individual folders for topic-specific documentation and examples.
 
 ## Resources
 - [MDN Web Components Guide](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-- [Web Components Specifications](https://www.udemy.com/course/desarrollo-de-aplicaciones-web-con-web-component/?couponCode=2021PM25)
+- [Web Components Specifications](https://www.webcomponents.org/specs)
+- - [Web Components Course](https://www.udemy.com/course/desarrollo-de-aplicaciones-web-con-web-component/?couponCode=2021PM25)
