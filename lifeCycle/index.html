@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.customElements.define(
+            'mi-comp',
+            class extends HTMLElement {
+                /* When the component is Created 
+                * Here the attributes are not available
+                * All related to the DOM is not available
+                * related with the object
+                */
+                constructor() {
+                    super();
+                    console.log('constructor');
+
+                    this.attachShadow({mode: 'open'})
+                    // this.shadowRoot.innerHTML = `<h1>${this.getAttribute("my-title")}</h1>`; // returns null
+                };
+                /* When the component is connected to the DOM 
+                * Here the attributes are available
+                */
+                connectedCallback() {
+                    console.log("Is mi-comp available ?: ", document.body.querySelector('mi-comp'))
+                    console.log('...In connectedCallback');
+                    this.shadowRoot.innerHTML = `<h1>${this.getAttribute("my-title")}</h1>`
+                };
+
+                /* It return all the attributtes names 
+                * will be triggered when the attributes are changed
+                */
+                static get observedAttributes() {
+
+                    return ['my-title'];
+                };
+                /* Updated */
+                attributeChangedCallback(name, old, now){
+                    console.log('the name of the attribute is: ' +  name + ' the old value is: ' + old + ' the new value is: ' + now);
+                    /*
+                    *
+                    */
+                    console.log("Is mi-comp available ?: ", document.body.querySelector('mi-comp'))
+                };
+                disconnectedCallback() {
+                    console.log('...In disconnectedCallback', this);
+                }
+            });
+    </script>
+    <mi-comp my-title="Hello from the title"></mi-comp>
+    <script>
+        setTimeout(() => {
+            let miComp = document.body.querySelector('mi-comp');
+            document.body.removeChild(miComp);
+        }, 2000);
+    </script>
+</body>
+</html>
