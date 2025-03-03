@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <custom-button>Click Me!!</custom-button>
+    <button is="custom-btn">Click Me 2 !!!</button>
+    <nuevo-saludo/>
+
+    <script>
+        class CustomButton extends HTMLElement {
+            constructor(){
+                super();
+                this.addEventListener('click', function(){
+                    alert("Button clicked");
+                })
+            }
+        }
+        window.customElements.define('custom-button', CustomButton);
+    
+        class CustomButton2 extends HTMLButtonElement {
+            constructor(){
+                super();
+                this.addEventListener('click', function(){
+                    alert("Button clicked");
+                })
+            }
+        }
+        window.customElements.define('custom-btn', CustomButton2, {extends: 'button'});
+    
+    </script>
+
+    <template id="saludo">
+        <h1>Hola Mundo</h1>
+    </template>
+
+    <script>
+        class Saludo extends HTMLElement{
+            constructor(){
+                super();
+                const content = document.querySelector('#saludo').content;
+                this.appendChild(document.importNode(content, true))
+            }
+        }
+        window.customElements.define('nuevo-saludo', Saludo);
+    </script>
+</body>
+</html>

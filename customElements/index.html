@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+</head>
+<body>
+    <div id="id">
+        <h1>Hi from the h1 inside div 1</h1>
+    </div>
+    <!-- the template is not inserte in the DOM -->
+    <template id="template">
+        <h1>Hello from the h1 n the template</h1>
+    </template>
+    <template id="lista">
+        <li>
+            <span>Hola</span>
+            <span></span>
+        </li>
+    </template>
+    <ul id="ul">
+
+    </ul>
+    <script>
+        // This code inserts the template in the Dom //
+        const template = document.querySelector('#template');
+        const templateClone = document.importNode(template.content, true);
+        document.body.appendChild(templateClone);
+
+        const list = ["Diego", "Yenni", "Alejandro", "Vannessa"];
+        const listTemplate = document.querySelector('#lista');
+        list.forEach((element)=>{
+            const templateClone = document.importNode(listTemplate.content, true)
+            templateClone.querySelectorAll('span')[1].innerText = element;
+            ul.appendChild(templateClone);
+        })
+    </script>
+</body>
+</html>

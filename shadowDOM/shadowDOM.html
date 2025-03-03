@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id="saludo">
+        <style>
+            /*h1{
+                background-color: chocolate;
+            } */
+            :host{
+                background-color: lightsalmon;
+                display:flex;
+            }
+        </style>
+        <h1>Hola Mundo</h1>
+    </template>
+
+    <script>
+        window.customElements.define("mi-saludo", class extends HTMLElement {
+            constructor(){
+                super();
+                let content = document.querySelector("#saludo").content;
+
+                let shadowRoot = this.attachShadow({mode: 'open'});
+
+                shadowRoot.appendChild(document.importNode(content, true));
+            }
+        })
+    </script>
+    <mi-saludo></mi-saludo>
+    <h1>Hola h1 con estilos</h1>
+    <style>
+        h1 {
+            background: rgb(0, 82, 82);
+            display: flex;
+        }
+    </style>
+</body>
+</html>
